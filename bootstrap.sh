@@ -14,4 +14,4 @@ else
     git checkout master
     git pull
 fi 
-sudo ansible-playbook -K playbook.yml
+sudo ansible-playbook -K playbook.yaml

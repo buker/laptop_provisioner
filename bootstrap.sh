@@ -1,8 +1,8 @@
 #!/bin/bash
 user=`who|cut -d' ' -f1`
 echo $user
-sudo apt-get update -yqq
-sudo apt-get install -yqq ansible git 
+apt-get update -yqq
+apt-get install -yqq ansible git 
 if [ ! -d "/home/$user/Workspace/laptop_provisioner" ]; then
     sudo -u $user mkdir -p /home/$user/Workspace
     cd /home/$user/Workspace 
@@ -14,4 +14,4 @@ else
     git checkout master
     git pull
 fi 
-sudo ansible-playbook -K playbook.yaml
+ansible-playbook -K playbook.yaml

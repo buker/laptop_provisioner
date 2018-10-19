@@ -1,10 +1,11 @@
 ---
+
 - name: Laptop provisioner, it will prepare your computer
   hosts: localhost
   tasks:
  
   - name: Print out the hostname of target
-
+    command: hostname
   - name: Ensure aptitude is installed
     command: apt-get -y install aptitude
 

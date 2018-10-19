@@ -9,7 +9,7 @@
 
   - name: Ensure aptitude is installed
     command: apt-get -y install aptitude
-    command_warnings=False
+    warn: False
 
   - name: Update apt package index
     apt: update_cache=yes

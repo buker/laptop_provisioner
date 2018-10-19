@@ -9,8 +9,9 @@
 
   - name: Ensure aptitude is installed
     command: apt-get -y install aptitude
-    warn: False
-
+    args:
+      warn: false
+    
   - name: Update apt package index
     apt: update_cache=yes
 

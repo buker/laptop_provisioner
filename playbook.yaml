@@ -31,7 +31,7 @@
       - software-properties-common
 
   - name: Install kubectl
-    command: curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    command: chmod +x ./kubectl
-    command: mv ./kubectl /usr/local/bin/kubectl
+    command: curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl >/tmp/kubectl
+    command: chmod +x /tmp/kubectl
+    command: mv /tmp/kubectl /usr/local/bin/kubectl
 

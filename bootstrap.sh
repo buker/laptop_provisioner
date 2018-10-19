@@ -8,4 +8,5 @@ if [ ! -d "/home/$user/Workspace" ]; then
     cd /home/$user/Workspace 
     sudo -u $user git clone https://github.com/buker/laptop_provisioner.git
     cd laptop_provisioner
+    sudo ansible-playbook -K playbook.yml
 fi 

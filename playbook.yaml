@@ -11,7 +11,7 @@
     apt: update_cache=yes
 
   - name: Ensure aptitude is installed
-    apt: aptitude
+    apt: name=aptitude
     args:
       warn: false
  

@@ -10,8 +10,8 @@ if [ ! -d "/home/$user/Workspace/laptop_provisioner" ]; then
     cd laptop_provisioner
 else 
     cd /home/$user/Workspace/laptop_provisioner
-    git fetch
-    git checkout master
-    git pull
+    sudo -u $user git fetch
+    sudo -u $user git checkout master
+    sudo -u $user git pull
 fi 
-ansible-playbook -K playbook.yaml
+ansible-playbook playbook.yaml

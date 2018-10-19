@@ -1,7 +1,7 @@
 ---
 - name: Laptop provisioner, it will prepare your computer
   hosts: localhost
-  connections: local
+  connection: local
   become: true
   tasks:
 

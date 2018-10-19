@@ -1,5 +1,13 @@
-- hosts: localhost
+---
+- name: Laptop provisioner, it will prepare your computer
+  hosts: localhost
+  connections: local
   become: true
   tasks:
-  - name: Install htop
-    apt: name=htop
+
+  - name: Update apt package index
+    apt: update_cache=yes
+
+  - name: Upgrade system packages
+    apt: upgrade=yes
+

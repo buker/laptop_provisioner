@@ -1,7 +1,6 @@
 ---
 - name: Laptop provisioner, it will prepare your computer
   hosts: localhost
-  become: true
   tasks:
  
   - name: Print out the hostname of target

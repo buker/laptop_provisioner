@@ -12,8 +12,6 @@
 
   - name: Ensure aptitude is installed
     apt: name=aptitude
-    args:
-      warn: false
  
   - name: Upgrade system packages
     apt: upgrade=yes

@@ -1,13 +1,33 @@
 ---
 - name: Laptop provisioner, it will prepare your computer
   hosts: localhost
-  connection: local
   become: true
   tasks:
+ 
+  - name: Print out the hostname of target
+
+  - name: Ensure aptitude is installed
+    command: apt-get -y install aptitude
 
   - name: Update apt package index
     apt: update_cache=yes
 
   - name: Upgrade system packages
     apt: upgrade=yes
+
+  - name: Install basic development tool
+    apt: name={{item}}
+    with_items:
+      - aptitude
+      - htop
+      - less
+      - git
+      - links
+      - telnet
+      - curl
+      - apt-transport-https 
+      - ca-certificates
+      - software-properties-common
+
+
 

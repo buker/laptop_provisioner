@@ -6,8 +6,10 @@
  
   - name: Print out the hostname of target
     command: hostname
+
   - name: Ensure aptitude is installed
     command: apt-get -y install aptitude
+    command_warnings=False
 
   - name: Update apt package index
     apt: update_cache=yes

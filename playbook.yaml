@@ -28,7 +28,7 @@
       - curl
       - apt-transport-https 
       - ca-certificates
-      - software-properties-commoni
+      - software-properties-common
       - unzip
       - jq
 

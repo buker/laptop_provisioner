@@ -32,7 +32,13 @@
       - unzip
       - jq
 
-  - name: Install kubectl
+  - name: Get last kubectl version
+    command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+    register: kubectl_link
+  - set_fact:
+       kubectl_link: "{{ command_output.stdout }}"
+
+
     get_url:  
       url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
       dest: /usr/local/bin/kubectl

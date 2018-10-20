@@ -28,11 +28,25 @@
       - curl
       - apt-transport-https 
       - ca-certificates
-      - software-properties-common
+      - software-properties-commoni
+      - unzip
+      - jq
 
   - name: Install kubectl
-    shell: |
-      curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-      chmod +x ./kubectl
-      mv ./kubectl /usr/local/bin/kubectl
+    get_url:  
+    url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mod: 0755
+
+  - name: Get link to last version of Terraform
+    command: echo "https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip"
+    register: terraform_link
+  - set_fact:
+     terraform_link: "{{ command_output.stdout }}"
+
+  - name: Download and Install Terraform
+    unarchive:
+      src: "{{ terraform_link }}"
+      remote_src: true
+      creates: "/usr/local/bin/terrfarom"  
 

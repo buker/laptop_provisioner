@@ -2,8 +2,10 @@
 
 - name: Laptop provisioner, it will prepare your computer
   hosts: localhost
+  sudo: True
+  user: buker
   tasks:
- 
+
   - name: Print out the hostname of target
     command: hostname
 
@@ -12,45 +14,90 @@
 
   - name: Ensure aptitude is installed
     apt: name=aptitude
- 
+
   - name: Upgrade system packages
     apt: upgrade=yes
+  - name: Install basic packages
+    apt: name={{item}}
+    with_items:
+     - aptitude
+     - htop
+     - less
+     - links
+     - telnet
+     - curl
+     - apt-transport-https
+     - ca-certificates
+     - software-properties-common
+     - unzip
+     - jq
+
+  - name: Add spotify key
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+  - name: Add spotify repo
+    apt_repository:
+      repo: "deb http://repository.spotify.com stable non-free"
 
   - name: Install basic development tool
     apt: name={{item}}
     with_items:
-      - aptitude
-      - htop
-      - less
+      - tmux
+      - zsh
       - git
-      - links
-      - telnet
-      - curl
-      - apt-transport-https 
-      - ca-certificates
-      - software-properties-common
-      - unzip
-      - jq
 
-  - name: Get last kubectl version
-    command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
-    register: kubectl_link
-    debug: kubectl-link
+  - name: Install multimedia
+    apt: name={{item}}
+    with_items:
+      - spotify-client
+      - steam
 
-    get_url:  
-      url: https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-      dest: /usr/local/bin/kubectl
-      mod: 0755
+  - name: Install bigger dev tools
+    apt: name={{item}}
+    with_items:
+      - docker.io
+      - virtualbox
 
-  - name: Get link to last version of Terraform
-    command: echo "https://releases.hashicorp.com/terraform/$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')/terraform_$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')_darwin_amd64.zip"
-    register: terraform_link
-  - set_fact:
-     terraform_link: "{{ command_output.stdout }}"
+  - name: Clone oh-my-zsh repo
+    git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/$user/.oh-my-zsh
 
-  - name: Download and Install Terraform
-    unarchive:
-      src: "{{ terraform_link }}"
-      remote_src: true
-      creates: "/usr/local/bin/terrfarom"  
+    ### Add dot files downloading
+    #  - name: deploy .zshrc
+    #template: src=files/zshrc.in dest=/home/$user/conf/zshrc owner=$user
 
+    #- name: remove standard zshrc
+    #file: path=/home/$user/.zshrc state=absent
+
+    #- name: Create conf folder in home directory
+    #file: path=/home/$user/conf/ state=directory owner=$user
+
+    #- name: symlink zshrc
+    #file: path=/home/$user/.zshrc src=/home/$user/conf/zshrc state=link owner=$user
+
+  - name: Set zsh as default shell
+    user: name=$user shell=/bin/zsh
+
+
+###Install kubectl
+#  - name: Check last version of kubectl
+#    command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+#    register: kubectl_version
+#
+#  - name: Download last kubectl version
+#    get_url:
+#      url: https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version.stdout}}/bin/linux/amd64/kubectl
+#      dest: /usr/local/bin/kubectl
+#      mode: 755
+#
+###Install Terraform
+#  - name: Check last terraform version
+#    shell: curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version'
+#    register: terraform_version
+#
+#  - name: Download last terraform version
+#    unarchive:
+#      src: "https://releases.hashicorp.com/terraform/{{ terraform_version.stdout }}/terraform_{{ terraform_version.stdout }}_linux_amd64.zip"
+#      dest: /usr/local/bin/
+#      remote_src: yes
+#

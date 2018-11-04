@@ -11,6 +11,7 @@
     - spotify
     - docker
     - steam
+    - chrome
   vars:
     user: "buker"
   tasks:

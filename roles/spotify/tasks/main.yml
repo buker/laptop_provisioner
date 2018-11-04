@@ -1,5 +1,6 @@
 - name: Install basic packages
-  apt: name={{item}}
+  apt: 
+    name: "{{item}}"
   with_items:
    - apt-transport-https
    - ca-certificates
@@ -15,7 +16,7 @@
 
 - name: Install spotify
   apt: 
-    name: {{item}}
+    name: "{{item}}"
     update_cache: yes
   with_items:
     - spotify-client

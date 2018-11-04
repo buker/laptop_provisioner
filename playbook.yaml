@@ -5,7 +5,7 @@
   user: buker
   become: yes
   roles:
-    spotify
+    - spotify
   vars:
     user: "buker"
   tasks:

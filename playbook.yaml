@@ -45,6 +45,5 @@
   - name: Install bigger dev tools
     apt: name={{item}}
     with_items:
-      - docker.io
       - virtualbox
 

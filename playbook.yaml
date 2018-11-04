@@ -1,9 +1,11 @@
 ---
 
 - name: Laptop provisioner, it will prepare your computer
-  hosts: localhost
-  sudo: True
+  hosts: localhost 
   user: buker
+  become: yes
+  vars:
+    user: "buker"
   tasks:
 
   - name: Print out the hostname of target
@@ -11,6 +13,7 @@
 
   - name: Update apt package index
     apt: update_cache=yes
+
 
   - name: Ensure aptitude is installed
     apt: name=aptitude
@@ -31,6 +34,8 @@
      - software-properties-common
      - unzip
      - jq
+     - ttf-ancient-fonts
+     - xclip
 
   - name: Add spotify key
     apt_key:
@@ -52,32 +57,54 @@
     with_items:
       - spotify-client
       - steam
-
+ 
   - name: Install bigger dev tools
     apt: name={{item}}
     with_items:
       - docker.io
       - virtualbox
+ 
+### Get dotfiles
+  - name: Clone Dotfiles repo
+    git: repo=https://github.com/buker/dotfiles dest=/home/{{ user }}/Config
+    become_user: "{{ user }}"
 
+### Install oh-my-zsh 
   - name: Clone oh-my-zsh repo
-    git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/$user/.oh-my-zsh
-
-    ### Add dot files downloading
-    #  - name: deploy .zshrc
-    #template: src=files/zshrc.in dest=/home/$user/conf/zshrc owner=$user
-
-    #- name: remove standard zshrc
-    #file: path=/home/$user/.zshrc state=absent
-
-    #- name: Create conf folder in home directory
-    #file: path=/home/$user/conf/ state=directory owner=$user
-
-    #- name: symlink zshrc
-    #file: path=/home/$user/.zshrc src=/home/$user/conf/zshrc state=link owner=$user
-
+    git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh
+    become_user: "{{ user }}"
+  - name: remove standard zshrc
+    file: path=/home/{{ user }}/.zshrc state=absent
+    become_user: "{{ user }}"
+  - name: symlink zshrc
+    file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/Config/.zshrc state=link owner={{ user }}
+    become_user: "{{ user }}"
+  - name: Download zsh them
+    git: repo=https://github.com/denysdovhan/spaceship-prompt.git dest=~/.oh-my-zsh/themes/spaceship-prompt
+    become_user: "{{ user }}"
+  - name: Symlink them file
+    file: path=~/.oh-my-zsh/themes/spaceship.zsh-theme  src=~/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme state=link 
+    become_user: "{{ user }}"
   - name: Set zsh as default shell
-    user: name=$user shell=/bin/zsh
+    user: name={{ user }} shell=/bin/zsh
 
+### Install tmux
+  - name: Remove standard tmux conf
+    file: path=/home/{{ user }}/.tmux.conf state=absent
+    become_user: "{{ user }}"
+  - name: Symlink tmux config
+    file: path=/home/{{ user }}/.tmux.conf src=/home/{{ user }}/Config/.tmux.conf state=link 
+    become_user: "{{ user }}"
+  - name: Clone tpm
+    git: repo=https://github.com/tmux-plugins/tpm dest=/home/{{ user }}/.tmux/plugins/tpm
+    become_user: "{{ user }}"
+  - name: Make magleva works
+    file: path=/home/{{ user }}/.tmux/thems state=directory
+    become_user: "{{ user }}"
+  - name: Link maglev them
+    file: path=/home/{{ user }}/.tmux/thems/maglev src=/home/{{ user }}/.tmux/plugins/maglev state=link
+    become_user: "{{ user }}"
+### Install vim configuration and plugins
 
 ###Install kubectl
 #  - name: Check last version of kubectl

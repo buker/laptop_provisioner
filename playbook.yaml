@@ -5,6 +5,7 @@
   user: buker
   become: yes
   roles:
+    - dotfiles
     - spotify
   vars:
     user: "buker"

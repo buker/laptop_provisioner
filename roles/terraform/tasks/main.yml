@@ -1,0 +1,18 @@
+###Install Terraform
+- name: install deps
+  apt: name={{item}}
+  with_items:
+    - unzip
+    - curl
+    - jq
+
+    - name: Check last terraform version
+  shell: curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version'
+  register: terraform_version
+
+- name: Download last terraform version
+  unarchive:
+    src: "https://releases.hashicorp.com/terraform/{{ terraform_version.stdout }}/terraform_{{ terraform_version.stdout }}_linux_amd64.zip"
+    dest: /usr/local/bin/
+    remote_src: yes
+

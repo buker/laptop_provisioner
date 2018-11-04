@@ -1,0 +1,22 @@
+- name: Install basic packages
+  apt: name={{item}}
+  with_items:
+   - apt-transport-https
+   - ca-certificates
+   - software-properties-common
+
+- name: Add spotify key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+- name: Add spotify repo
+  apt_repository:
+    repo: "deb http://repository.spotify.com stable non-free"
+
+- name: Install spotify
+  apt: 
+    name: {{item}}
+    update_cache: yes
+  with_items:
+    - spotify-client
+

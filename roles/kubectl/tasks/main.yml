@@ -1,0 +1,17 @@
+###Install kubectl
+- name: install curl
+  apt: name={{item}}
+  with_items:
+    - curl
+
+- name: Check last version of kubectl
+  command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+  register: kubectl_version
+
+- name: Download last kubectl version
+  get_url:
+    url: https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version.stdout}}/bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: 755
+
+

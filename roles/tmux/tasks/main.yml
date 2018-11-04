@@ -1,0 +1,28 @@
+### Install tmux
+- name: Install dependencies
+  apt: name={item}}
+  with_items:
+    - tmux
+    - xclip
+    - ttf-ancient-fonts
+
+- name: Remove standard tmux conf
+  file: path=/home/{{ user }}/.tmux.conf state=absent
+  become_user: "{{ user }}"
+
+- name: Symlink tmux config
+  file: path=/home/{{ user }}/.tmux.conf src=/home/{{ user }}/Config/.tmux.conf state=link
+  become_user: "{{ user }}"
+
+- name: Clone tpm
+  git: repo=https://github.com/tmux-plugins/tpm dest=/home/{{ user }}/.tmux/plugins/tpm
+  become_user: "{{ user }}"
+  
+- name: Make magleva works
+  file: path=/home/{{ user }}/.tmux/thems state=directory
+  become_user: "{{ user }}"
+
+- name: Link maglev them
+  file: path=/home/{{ user }}/.tmux/thems/maglev src=/home/{{ user }}/.tmux/plugins/maglev state=link
+  become_user: "{{ user }}"
+

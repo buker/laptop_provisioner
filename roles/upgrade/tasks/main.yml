@@ -1,11 +1,5 @@
-### Get dotfiles
-- name: Install git
-  apt: name={{item}}
-  with_items:
-      - git
-
-- name: Clone Dotfiles repo
-  git: repo=https://github.com/buker/dotfiles dest=/home/{{ user }}/Config
-  become_user: "{{ user }}"
+### Upgrade system
+- name: Upgrade system
+  apt: upgrade=yes update_cache=yes
 
 

@@ -1,11 +1,5 @@
-### Get dotfiles
-- name: Install git
+### Install steam
+- name: Install steam
   apt: name={{item}}
   with_items:
-      - git
-
-- name: Clone Dotfiles repo
-  git: repo=https://github.com/buker/dotfiles dest=/home/{{ user }}/Config
-  become_user: "{{ user }}"
-
-
+      - steam

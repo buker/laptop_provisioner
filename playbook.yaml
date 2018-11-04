@@ -5,9 +5,12 @@
   user: buker
   become: yes
   roles:
+    - upgrade
+    - aptitiude
     - dotfiles
     - spotify
     - docker
+    - steam
   vars:
     user: "buker"
   tasks:
@@ -34,11 +37,6 @@
      - ca-certificates
      - software-properties-common
 
-  - name: Install multimedia
-    apt: name={{item}}
-    with_items:
-      - steam
- 
   - name: Install bigger dev tools
     apt: name={{item}}
     with_items:

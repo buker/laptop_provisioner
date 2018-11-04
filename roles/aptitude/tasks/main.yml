@@ -1,11 +1,8 @@
-### Get dotfiles
-- name: Install git
+### Install aptotide
+- name: Install aptitude
   apt: name={{item}}
   with_items:
-      - git
+      - aptitude
 
-- name: Clone Dotfiles repo
-  git: repo=https://github.com/buker/dotfiles dest=/home/{{ user }}/Config
-  become_user: "{{ user }}"
 
 

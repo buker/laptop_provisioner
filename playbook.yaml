@@ -12,9 +12,6 @@
     user: "buker"
   tasks:
 
-  - name: Print out the hostname of target
-    command: hostname
-
   - name: Update apt package index
     apt: update_cache=yes
 

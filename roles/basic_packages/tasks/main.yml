@@ -1,11 +1,14 @@
-### Get dotfiles
-- name: Install git
+- name: Install basic packages
   apt: name={{item}}
   with_items:
-      - git
-
-- name: Clone Dotfiles repo
-  git: repo=https://github.com/buker/dotfiles dest=/home/{{ user }}/Config
-  become_user: "{{ user }}"
-
-
+      - aptitude
+      - htop
+      - less
+      - links
+      - telnet
+      - curl
+      - wget
+      - mc
+      - apt-transport-https
+      - ca-cerificates
+      - software-properties-common

@@ -1,0 +1,6 @@
+- name: Install basic packages
+  apt: name={{item}}
+  with_items:
+    - git
+    - virtualbox
+    - svn

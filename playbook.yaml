@@ -7,6 +7,7 @@
   roles:
     - upgrade
     - aptitude
+    - basic_packages
     - dotfiles
     - spotify
     - docker
@@ -17,30 +18,7 @@
   vars:
     user: "buker"
   tasks:
-
-  - name: Update apt package index
-    apt: update_cache=yes
-
-
-  - name: Ensure aptitude is installed
-    apt: name=aptitude
-
-  - name: Upgrade system packages
-    apt: upgrade=yes
-  - name: Install basic packages
-    apt: name={{item}}
-    with_items:
-     - aptitude
-     - htop
-     - less
-     - links
-     - telnet
-     - curl
-     - apt-transport-https
-     - ca-certificates
-     - software-properties-common
-
-  - name: Install bigger dev tools
+   - name: Install bigger dev tools
     apt: name={{item}}
     with_items:
       - virtualbox

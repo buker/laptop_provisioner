@@ -12,6 +12,8 @@
     - docker
     - steam
     - chrome
+    - kubectl
+    - terraform
   vars:
     user: "buker"
   tasks:

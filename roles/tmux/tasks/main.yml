@@ -1,6 +1,6 @@
 ### Install tmux
 - name: Install dependencies
-  apt: name={item}}
+  apt: name={{item}}
   with_items:
     - tmux
     - xclip

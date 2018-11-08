@@ -15,11 +15,10 @@
     - chrome
     - kubectl
     - terraform
+    - zsh
+    - tmux
+    - keeweb
+    - franz
   vars:
     user: "buker"
-  tasks:
-   - name: Install bigger dev tools
-    apt: name={{item}}
-    with_items:
-      - virtualbox
 

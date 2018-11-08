@@ -6,8 +6,7 @@
       - git
 
   - name: Clone oh-my-zsh repo
-    git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user 
-}}/.oh-my-zsh
+    git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh
     become_user: "{{ user }}"
 
   - name: remove standard zshrc
@@ -15,18 +14,15 @@
     become_user: "{{ user }}"
 
   - name: symlink zshrc
-    file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/Config/.zshrc state=link 
-owner={{ user }}
+    file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/Config/.zshrc state=link owner={{ user }}
     become_user: "{{ user }}"
 
   - name: Download zsh them
-    git: repo=https://github.com/denysdovhan/spaceship-prompt.git 
-dest=~/.oh-my-zsh/themes/spaceship-prompt
+    git: repo=https://github.com/denysdovhan/spaceship-prompt.git dest=~/.oh-my-zsh/themes/spaceship-prompt
     become_user: "{{ user }}"
 
   - name: Symlink them file
-    file: path=~/.oh-my-zsh/themes/spaceship.zsh-theme  
-src=~/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme state=link
+    file: path=~/.oh-my-zsh/themes/spaceship.zsh-theme src=~/.oh-my-zsh/themes/spaceship-prompt/spaceship.zsh-theme state=link
     become_user: "{{ user }}"
 
   - name: Set zsh as default shell

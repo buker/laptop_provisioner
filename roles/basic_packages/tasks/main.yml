@@ -10,5 +10,8 @@
       - wget
       - mc
       - apt-transport-https
-      - ca-cerificates
+      - ca-certificates
       - software-properties-common
+      - vim-gtk
+      - exfat-fuse
+      - exfat-utils

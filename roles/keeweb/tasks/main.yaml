@@ -1,0 +1,4 @@
+- name: Install prince
+  apt:
+  deb: https://github.com/keeweb/keeweb/releases/download/v1.6.3/KeeWeb-1.6.3.linux.x64.deb
+

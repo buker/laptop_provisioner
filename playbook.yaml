@@ -19,6 +19,12 @@
     - tmux
     - keeweb
     - franz
+    - min
+    - shell-extension
+    - npm
+    - pet
+    - pip-tools
+    - npm-tools
   vars:
     user: "buker"
 

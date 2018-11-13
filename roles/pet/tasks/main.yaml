@@ -1,0 +1,3 @@
+- name: Install pet
+  apt:
+    deb: https://github.com/knqyf263/pet/releases/download/v0.3.0/pet_0.3.0_linux_amd64.deb 

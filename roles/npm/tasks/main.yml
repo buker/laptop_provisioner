@@ -1,0 +1,21 @@
+###Install kubectl
+- name: install curl
+  apt: name={{item}}
+  with_items:
+    - curl
+
+- name: download npm
+  get_url: 
+    url: https://deb.nodesource.com/setup_10.x 
+    dest: /tmp/npm.sh
+    mode: 777
+
+- name: install npm
+  shell: /tmp/npm.sh
+- name: install npm 
+  apt: name={{item}}
+  with_items:
+    - nodejs
+  update_chache: yes
+
+

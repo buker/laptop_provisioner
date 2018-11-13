@@ -1,0 +1,3 @@
+- name: Install min
+  apt:
+    deb: https://github.com/minbrowser/min/releases/download/v1.8.0/min_1.8.0_amd64.deb

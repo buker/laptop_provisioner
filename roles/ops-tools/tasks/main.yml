@@ -1,12 +1,8 @@
 - name: Install basic packages
   apt: name={{item}}
   with_items:
-    - git
     - virtualbox
-    - svn
     - wireshark
-    - tig
-    - kubectx
-    - meld
-    - gir1.2-gtop-2.0 
-    - lm-sensors
+    - ansible
+    - gparted
+    -  

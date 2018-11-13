@@ -1,0 +1,5 @@
+- pip:
+    name:
+      - tmuxp
+      - youtube-dl
+      - howdoi

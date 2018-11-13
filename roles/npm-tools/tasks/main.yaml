@@ -1,0 +1,5 @@
+- name: Install the globally package "fkill-cli".
+  npm:
+    name: fkill-cli
+    global: yes
+    state: present

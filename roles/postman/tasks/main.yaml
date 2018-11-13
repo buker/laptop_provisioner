@@ -1,0 +1,4 @@
+- name: Install Postman
+  apt:
+    deb: https://dl.pstmn.io/download/latest/linux64
+

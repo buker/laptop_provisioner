@@ -1,0 +1,13 @@
+###Install minikube
+- name: install curl
+  apt: name={{item}}
+  with_items:
+    - curl
+
+- name: Download last kubectl version
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
+    dest: /usr/local/bin/minikube
+    mode: 755
+
+

@@ -3,3 +3,35 @@
     name: fkill-cli
     global: yes
     state: present
+- name: Install the globally package "json-server"
+  npm:
+    name: json-server
+    global: yes
+    state: present
+- name: Install the globally package "get-port-cli".
+  npm:
+    name: get-port-cli
+    global: yes
+    state: present
+- name: Install the globally package "public-ip-cli".
+  npm:
+    name: public-ip-cli
+    global: yes
+    state: present
+- name: Install the globally package "internal-ip-cli".
+  npm:
+    name: internal-ip-cli
+    global: yes
+    state: present
+- name: Install the globally package "artillery".
+  npm:
+    name: artillery
+    global: yes
+    version: '1.6.0-2'
+    state: present
+- name: Install the globally package "localtunnel".
+  npm:
+    name: localtunnel
+    global: yes
+    state: present
+

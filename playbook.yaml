@@ -5,26 +5,30 @@
   user: buker
   become: yes
   roles:
-    - upgrade
-    - aptitude
+#    - upgrade
+#    - aptitude
     - basic_packages
-    - dotfiles
-    - spotify
-    - docker
-    - steam
-    - chrome
-    - kubectl
-    - terraform
-    - zsh
-    - tmux
-    - keeweb
-    - franz
-    - min
-    - shell-extension
-    - npm
-    - pet
-    - pip-tools
-    - npm-tools
+#    - dotfiles
+#    - spotify
+#    - docker
+#    - steam
+#    - chrome
+#    - kubectl
+#    - terraform
+#    - zsh
+#    - tmux
+#    - keeweb
+#    - franz
+#    - min
+#    - shell-extension
+#    - npm
+#    - pet
+#    - pip-tools
+#    - npm-tools
+#    - ops-tools
+#    - dev-tools
+#    - minikube
+    - comercial_packages
   vars:
     user: "buker"
 

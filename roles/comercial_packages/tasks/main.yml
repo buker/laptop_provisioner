@@ -1,0 +1,4 @@
+- name: Install franz
+  apt:
+    deb: https://release.axocdn.com/linux/gitkraken-amd64.deb 
+    

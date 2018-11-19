@@ -1,8 +1,11 @@
-- name: Install basic packages
+- name: Install packages for ops
   apt: name={{item}}
   with_items:
     - virtualbox
     - wireshark
     - ansible
     - gparted
-    -  
+    - telepresence
+    - kubectx
+    - vagrant
+    - packer

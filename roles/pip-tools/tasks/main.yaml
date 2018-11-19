@@ -3,3 +3,5 @@
       - tmuxp
       - youtube-dl
       - howdoi
+      - speedtest-cli
+      - localstack

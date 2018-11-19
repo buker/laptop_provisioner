@@ -24,4 +24,7 @@
       - python3-pip
       - python-pip
       - python-setuptools
-      - python3-setuptools 
+      - python3-setuptools
+      - gir1.2-gtop-2.0
+      - lm-sensors
+      - libgnome-keyring0 

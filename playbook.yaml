@@ -16,7 +16,7 @@
 #    - kubectl
 #    - terraform
 #    - zsh
-#    - tmux
+    - tmux
 #    - keeweb
 #    - franz
 #    - min

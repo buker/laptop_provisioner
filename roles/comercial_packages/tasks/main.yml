@@ -1,4 +1,8 @@
 - name: Install franz
   apt:
-    deb: https://release.axocdn.com/linux/gitkraken-amd64.deb 
+    deb: https://release.axocdn.com/linux/gitkraken-amd64.deb
+- name: Install slack gui
+  apt:
+    deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.3-amd64.deb
+ 
     

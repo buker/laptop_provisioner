@@ -20,8 +20,10 @@
 
 - name: install all plugins
   shell: "~/.tmux/plugins/tpm/bin/install_plugins"
+  become_user: "{{ user }}"
 - name: update all plugins
   shell: "~/.tmux/plugins/tpm/bin/update_plugins all"
+  become_user: "{{ user }}"
 - name: Make magleva works
   file: path=/home/{{ user }}/.tmux/thems state=directory
   become_user: "{{ user }}"

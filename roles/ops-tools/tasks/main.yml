@@ -5,7 +5,7 @@
     - wireshark
     - ansible
     - gparted
-    - telepresence
+    #- telepresence
     - kubectx
     - vagrant
     - packer

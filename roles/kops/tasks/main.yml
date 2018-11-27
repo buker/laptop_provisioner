@@ -1,0 +1,13 @@
+###Install kubectl
+- name: install curl
+  apt: name={{item}}
+  with_items:
+    - curl
+
+- name: Download last kubectl version
+  get_url:
+    url: https://github.com/kubernetes/kops/releases/download/1.10.0/kops-linux-amd64
+    dest: /usr/local/bin/kops
+    mode: 755
+
+

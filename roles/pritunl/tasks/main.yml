@@ -1,0 +1,13 @@
+- name: "apt |add pritunl key" 
+  apt_key: 
+    keyserver: hkp://keyserver.ubuntu.com
+    id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+- name: "apt | add pritunl repo"
+  apt_repository:
+    repo: "deb http://repo.pritunl.com/stable/apt cosmic main"
+    filename: "pritunl"
+    state: present
+    update_cache: yes
+
+- name: Install pritunl
+  apt: name=pritunl-client-electron

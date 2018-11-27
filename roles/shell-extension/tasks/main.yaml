@@ -6,6 +6,7 @@
 
 - name: create dir
   file: path=/home/{{ user }}/.local/share/gnome-shell/extensions/ state=directory
+  become_user: "{{ user }}"
 - name: create dir for extensions
   git: repo=https://github.com/corecoding/Vitals.git dest=/home/{{ user }}/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com
   become_user: "{{ user }}"

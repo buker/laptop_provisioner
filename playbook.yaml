@@ -5,30 +5,32 @@
   user: buker
   become: yes
   roles:
-#    - upgrade
-#    - aptitude
-    - basic_packages
-#    - dotfiles
-#    - spotify
-#    - docker
-#    - steam
-#    - chrome
-#    - kubectl
-#    - terraform
-#    - zsh
-    - tmux
-#    - keeweb
-#    - franz
-#    - min
-#    - shell-extension
-#    - npm
-#    - pet
-#    - pip-tools
-#    - npm-tools
-#    - ops-tools
-#    - dev-tools
-#    - minikube
-    - comercial_packages
+    #- upgrade
+    #- aptitude
+    #- basic_packages
+    #- dotfiles
+    #- spotify
+    #- docker
+    #- steam
+    #- chrome
+    - kubectl
+    #- terraform
+    #- zsh
+    #- tmux
+    #- franz
+    #- min
+    #- shell-extension
+    #- npm
+    #- pet
+    #- pip-tools
+    #- npm-tools
+    #- ops-tools
+    #- dev-tools
+    #- minikube
+    #- comercial_packages
+    #- keeweb
+    #- pritunl
+    - kops
   vars:
     user: "buker"
 
